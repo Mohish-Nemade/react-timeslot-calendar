@@ -156,7 +156,7 @@ export default class Month extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) { // eslint-disable-line camelcase
     this.setState({
       currentWeekIndex: this._getStartingWeek(nextProps.currentDate, nextProps.weeks),
     });
