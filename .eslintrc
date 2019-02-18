@@ -30,6 +30,7 @@
     "module": true,
   },
   "env": {
+    "node": true,
     "jest/globals": true
   }
 }

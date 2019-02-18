@@ -1,6 +1,9 @@
-var webpack = require('webpack');
-var WebpackBundleSizeAnalyzerPlugin = require('webpack-bundle-size-analyzer').WebpackBundleSizeAnalyzerPlugin;
+const webpack = require('webpack');
+const WebpackBundleSizeAnalyzerPlugin = require('webpack-bundle-size-analyzer').WebpackBundleSizeAnalyzerPlugin;
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
+
+const isDev = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: './src/js/react-timeslot-calendar.jsx',
@@ -20,9 +23,13 @@ module.exports = {
         'NODE_ENV': JSON.stringify('production'),
       },
     }),
-  ],
+  ].concat(isDev ? [] : [
+    new MiniCssExtractPlugin({
+      filename: 'style.css',
+    }),
+  ]),
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
@@ -33,13 +40,15 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [{
-          loader: 'style-loader', // creates style nodes from JS strings
-        }, {
-          loader: 'css-loader', // translates CSS into CommonJS
-        }, {
-          loader: 'sass-loader', // compiles Sass to CSS
-        }],
+        use: [
+          isDev
+            ? 'style-loader'
+            : MiniCssExtractPlugin.loader, // creates style nodes from JS strings
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+          }, {
+            loader: 'sass-loader', // compiles Sass to CSS
+          }],
       },
     ],
   },
