@@ -20,7 +20,7 @@ export default class Timeslot extends React.Component {
       status === SELECTED ? 'tsc-timeslot--selected' : '',
       status === DISABLED ? 'tsc-timeslot--disabled' : '',
       ...(customClassNames || []),
-    ];
+    ].join(' ');
 
     return (
       <div className = { timeslotClassNames } onClick = { this._onTimeslotClick.bind(this) }>
