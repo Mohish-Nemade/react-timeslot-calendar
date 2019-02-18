@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import moment from 'moment';
 import Timeslot from './timeslot.jsx';
 
@@ -18,12 +17,8 @@ import {
 export default class Day extends React.Component {
 
   render() {
-    const dayClassNames = classnames({
-      'tsc-day': true,
-    });
-
     return (
-      <div className = { dayClassNames }>
+      <div className = "tsc-day">
         { this._renderTitle() }
         { this._renderTimeSlots() }
       </div>

@@ -13,6 +13,9 @@
     "test": "npm run eslint && jest --verbose -e",
     "prepublish": "npm run build"
   },
+  "files": [
+    "build"
+  ],
   "keywords": [
     "react",
     "calendar",

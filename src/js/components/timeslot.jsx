@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 import {
   DEFAULT,
@@ -16,11 +15,12 @@ export default class Timeslot extends React.Component {
       customClassNames,
     } = this.props;
 
-    const timeslotClassNames = classnames({
-      'tsc-timeslot': true,
-      'tsc-timeslot--selected': status == SELECTED,
-      'tsc-timeslot--disabled': status == DISABLED,
-    }, customClassNames);
+    const timeslotClassNames = [
+      'tsc-timeslot',
+      status === SELECTED ? 'tsc-timeslot--selected' : '',
+      status === DISABLED ? 'tsc-timeslot--disabled' : '',
+      ...(customClassNames || []),
+    ];
 
     return (
       <div className = { timeslotClassNames } onClick = { this._onTimeslotClick.bind(this) }>
