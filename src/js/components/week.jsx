@@ -33,7 +33,7 @@ export default class Week extends React.Component {
             key = { index }
             onTimeslotClick = { this._onTimeslotClick.bind(this) }
             initialDate = { initialDate }
-            timeslots = { timeslots }
+            timeslots = { timeslots[weekDay] || [] }
             timeslotProps = { timeslotProps }
             selectedTimeslots = { selectedTimeslots }
             disabledTimeslots = { disabledTimeslots }
